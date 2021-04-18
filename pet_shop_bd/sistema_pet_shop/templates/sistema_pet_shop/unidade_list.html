@@ -2,4 +2,20 @@
 
 {% block title %}Sistema Pet Shop{% endblock %}
 
-{% block content %} {% endblock %}
+{% block content %} 
+    <a href="/nova-unidade">
+        <button class="btn btn-primary">Cadastrar Unidade</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Unidade</th>
+            <th>Endereço</th>
+        </tr>
+        {% for unidade in unidade_list %}
+        <tr>
+            <td>{{ unidade.nome }}</td>
+            <td>{{ unidade.endereco}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

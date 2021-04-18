@@ -1,7 +1,7 @@
 from django.db import models
 
 class Unidade(models.Model):
-    cep = models.IntegerField(8, primary_key=True)
+    cep = models.IntegerField(primary_key=True)
     nome = models.CharField(max_length=70)
     endereco = models.CharField(max_length=70)
 
