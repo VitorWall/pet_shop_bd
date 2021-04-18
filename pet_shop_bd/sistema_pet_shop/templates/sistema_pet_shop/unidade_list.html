@@ -11,6 +11,7 @@
             <th>Unidade</th>
             <th>Endereço</th>
             <th></th>
+            <th></th>
         </tr>
         {% for unidade in unidade_list %}
         <tr>
@@ -19,6 +20,11 @@
             <td>
                 <a href="/editar-unidade/{{ unidade.cep }}">
                     <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-unidade/{{ unidade.cep }}">
+                    <button class="btn btn-danger">Apagar</button>
                 </a>
             </td>
         </tr>

@@ -24,3 +24,8 @@ def editUnidade (request, pk, template_name='sistema_pet_shop/edit_unidade.html'
         form.save()
         return redirect('sistema_pet_shop:home')
     return render(request, template_name, {'form':form})
+
+def deleteUnidade (request, pk, template_name=''):
+    unidade = get_object_or_404(Unidade, cep=pk)
+    unidade.delete()
+    return redirect('/')
