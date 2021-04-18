@@ -10,11 +10,17 @@
         <tr>
             <th>Unidade</th>
             <th>Endereço</th>
+            <th></th>
         </tr>
         {% for unidade in unidade_list %}
         <tr>
             <td>{{ unidade.nome }}</td>
             <td>{{ unidade.endereco}}</td>
+            <td>
+                <a href="/editar-unidade/{{ unidade.cep }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </table>

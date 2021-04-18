@@ -4,7 +4,7 @@ from .models import *
 from .forms import *
 
 # Create your views here.
-class Home (ListView):
+class Unidades (ListView):
     model = Unidade
 
 def novaUnidade (request):
@@ -16,3 +16,11 @@ def novaUnidade (request):
     form = UnidadeForm()
 
     return render(request,'nova_unidade.html',{'form': form})
+
+def editUnidade (request, pk, template_name='sistema_pet_shop/edit_unidade.html'):
+    unidade = get_object_or_404(Unidade, cep=pk)
+    form = UnidadeForm(request.POST or None, instance=unidade)
+    if form.is_valid():
+        form.save()
+        return redirect('sistema_pet_shop:home')
+    return render(request, template_name, {'form':form})
