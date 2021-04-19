@@ -18,4 +18,13 @@ urlpatterns = [
     path('editar-pet/<int:pk>', views.editPet, name="novo-pet"),
     path('delete-pet/<int:pk>', views.deletePet, name='delete-pet'),
     path('funcionarios/<int:pk>', views.Funcionarios.as_view(), name="funcionarios"),
-]
+    path('novo-servico', views.novoServico, name="novo-servico"),
+    path('servicos', views.Servicos.as_view(), name="servicos"),
+    path('editar-servico/<int:pk>', views.editServico, name="novo-servico"),
+    path('delete-servico/<int:pk>', views.deleteServico, name='delete-servico'),
+    path('nova-acomodacao', views.novaAcomodacao, name="nova-acomodacao"),
+    path('acomodacoes', views.Acomodacoes.as_view(), name="acomodacoes"),
+    path('editar-acomodacao/<int:pk>', views.editAcomodacao, name="nova-acomodacao"),
+    path('delete-acomodacao/<int:pk>', views.deleteAcomodacao, name='delete-acomodacao'),
+    
+]   

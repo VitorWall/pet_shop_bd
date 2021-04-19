@@ -1,0 +1,40 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Sistema Pet Shop{% endblock %}
+
+{% block content %} 
+    <a href="/novo-servico">
+        <button class="btn btn-primary">Adicionar Servico</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Duração média</th>
+            <th>Unidades</th>
+        </tr>
+        {% for servico in servico_list %}
+        <tr>
+            <td>{{ servico.tipo }}</td>
+            <td>{{ servico.descricao }}</td>
+            <td>{{ servico.duracao_media }}</td>
+            <td>
+                {% for unidade in servico.unidades.all %}
+                    <a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a><br>
+                {% endfor %}
+            </td>
+
+            <td>
+                <a href="/editar-servico/{{ servico.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-servico/{{ servico.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

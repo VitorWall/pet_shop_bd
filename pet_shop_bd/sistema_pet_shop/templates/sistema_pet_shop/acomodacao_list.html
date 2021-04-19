@@ -1,0 +1,34 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Sistema Pet Shop{% endblock %}
+
+{% block content %} 
+    <a href="/nova-acomodacao">
+        <button class="btn btn-primary">Adicionar Acomodação</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Número</th>
+            <th>Tamanho</th>
+            <th>Unidade</th>
+        </tr>
+        {% for acomodacao in acomodacao_list %}
+        <tr>
+            <td>{{ acomodacao.numero }}</td>
+            <td>{{ acomodacao.tamanho }}</td>
+            <td><a href="/detail-unidade/{{ acomodacao.unidade.id }}">{{ acomodacao.unidade.nome }}</a></td>
+
+            <td>
+                <a href="/editar-acomodacao/{{ acomodacao.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-acomodacao/{{ acomodacao.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
