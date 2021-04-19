@@ -3,7 +3,8 @@ from django.views.generic import DetailView, ListView
 from .models import *
 from .forms import *
 
-# Create your views here.
+# UNIDADE ---------------------------------------------------------------------------
+
 class Unidades (ListView):
     model = Unidade
 
@@ -32,6 +33,8 @@ def deleteUnidade (request, pk, template_name=''):
     unidade = get_object_or_404(Unidade, id=pk)
     unidade.delete()
     return redirect('sistema_pet_shop:unidades')
+
+# CLIENTE ---------------------------------------------------------------------------
 
 class Clientes (ListView):
     model = Cliente
@@ -69,6 +72,8 @@ def deleteCliente (request, pk, template_name=''):
     cliente = get_object_or_404(Cliente, id=pk)
     cliente.delete()
     return redirect('/clientes')
+
+# PET ---------------------------------------------------------------------------
 
 class Pets (ListView):
     model = Pet
@@ -109,6 +114,8 @@ def deletePet (request, pk, template_name=''):
     pet.delete()
     return redirect('/detail-cliente/' + str(pet.cliente.id))
 
+# FUNCIONÁRIO ---------------------------------------------------------------------------
+
 class Funcionarios (ListView):
     def get(self, request, pk, *args, **kwargs):
         unidade = get_object_or_404(Unidade, id=pk)
@@ -142,6 +149,11 @@ def deleteFuncionario (request, pk, template_name=''):
     funcionario.delete()
     return redirect('/funcionarios/' + str(funcionario.unidade.id))
 
+# SERVIÇO ---------------------------------------------------------------------------
+
+class Servicos (ListView):
+    model = Servico
+
 def novoServico (request):
     if request.method == 'POST':
         form = ServicoForm(request.POST)
@@ -151,9 +163,6 @@ def novoServico (request):
     form = ServicoForm()
 
     return render(request,'novo_servico.html',{'form': form})
-
-class Servicos (ListView):
-    model = Servico
 
 def editServico (request, pk, template_name='sistema_pet_shop/edit_servico.html'):
     servico = get_object_or_404(Servico, id=pk)
@@ -168,19 +177,27 @@ def deleteServico (request, pk, template_name=''):
     servico.delete()
     return redirect('/servicos')
 
+# ACOMODAÇÃO ---------------------------------------------------------------------------
 
-def novaAcomodacao (request):
+class Acomodacoes (ListView):
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        acomodacoes = Acomodacao.objects.filter(unidade=unidade.id)
+        acomodacoes.unidade = unidade
+        context = {'acomodacoes': acomodacoes}
+        return render(request,'sistema_pet_shop/acomodacao_list.html', context=context)
+
+def novaAcomodacao (request, pk):
+    unidade = get_object_or_404(Unidade, id=pk)
     if request.method == 'POST':
         form = AcomodacaoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sistema_pet_shop:acomodacoes')
+            return redirect('/acomodacoes/'+ str(unidade.id))
     form = AcomodacaoForm()
+    form.fields['unidade'].initial =  unidade.id
 
     return render(request,'nova_acomodacao.html',{'form': form})
-
-class Acomodacoes (ListView):
-    model = Acomodacao
 
 def editAcomodacao (request, pk, template_name='sistema_pet_shop/edit_acomodacao.html'):
     acomodacao = get_object_or_404(Acomodacao, id=pk)
@@ -193,9 +210,69 @@ def editAcomodacao (request, pk, template_name='sistema_pet_shop/edit_acomodacao
 def deleteAcomodacao (request, pk, template_name=''):
     acomodacao = get_object_or_404(Acomodacao, id=pk)
     acomodacao.delete()
-    return redirect('/acomodacoes')
+    return redirect('/acomodacoes/' + str(acomodacao.unidade.id))
 
+# AGENDAMENTO ---------------------------------------------------------------------------
 
+class Agendamentos (ListView):
+    model = Agendamento
+
+def novoAgendamento (request, pk):
+    pet = get_object_or_404(Pet, id=pk)
+    if request.method == 'POST':
+        form = AgendamentoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/detail-pet/' + str(pet.id))
+    form = AgendamentoForm()
+    form.fields['pet'].initial =  pet.id
+
+    return render(request,'novo_agendamento.html',{'form': form})
+
+def editAgendamento (request, pk, template_name='sistema_pet_shop/edit_agendamento.html'):
+    agendamento = get_object_or_404(Agendamento, id=pk)
+    form = AgendamentoForm(request.POST or None, instance=agendamento)
+    if form.is_valid():
+        form.save()
+        return redirect('/detail-pet/' + str(agendamento.pet.id))
+    return render(request, template_name, {'form':form})
+
+def deleteAgendamento (request, pk, template_name=''):
+    agendamento = get_object_or_404(Agendamento, id=pk)
+    agendamento.delete()
+    return redirect('/detail-pet/' + str(agendamento.pet.id))
+
+# ESTADIA ---------------------------------------------------------------------------
+
+class estadias (ListView):
+    model = Estadia
+
+def novaEstadia (request, pk):
+    pet = get_object_or_404(Pet, id=pk)
+    if request.method == 'POST':
+        form = EstadiaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/detail-pet/' + str(pet.id))
+    form = EstadiaForm()
+    form.fields['pet'].initial =  pet.id
+
+    return render(request,'nova_estadia.html',{'form': form})
+
+def editEstadia (request, pk, template_name='sistema_pet_shop/edit_estadia.html'):
+    agendamento = get_object_or_404(Agendamento, id=pk)
+    form = AgendamentoForm(request.POST or None, instance=agendamento)
+    if form.is_valid():
+        form.save()
+        return redirect('/detail-pet/' + str(agendamento.pet.id))
+    return render(request, template_name, {'form':form})
+
+def deleteEstadia (request, pk, template_name=''):
+    estadia = get_object_or_404(Estadia, id=pk)
+    estadia.delete()
+    return redirect('/detail-pet/' + str(estadia.pet.id))
+
+# SALA ---------------------------
 def novaSala (request):
     if request.method == 'POST':
         form = SalaForm(request.POST)

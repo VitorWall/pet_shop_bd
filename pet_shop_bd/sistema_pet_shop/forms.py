@@ -26,6 +26,7 @@ class AcomodacaoForm(forms.ModelForm):
     class Meta:
         model = Acomodacao
         fields = "__all__"
+        widgets = {'unidade': forms.HiddenInput()}
         
 class FuncionarioForm (forms.ModelForm):
     class Meta:
@@ -37,3 +38,14 @@ class SalaForm(forms.ModelForm):
     class Meta:
         model = Sala
         fields = "__all__"
+class AgendamentoForm(forms.ModelForm):
+    class Meta:
+        model = Agendamento
+        fields = "__all__"
+        widgets = {'pet': forms.HiddenInput()}
+
+class EstadiaForm(forms.ModelForm):
+    class Meta:
+        model = Estadia
+        fields = "__all__"
+        widgets = {'pet': forms.HiddenInput()}
