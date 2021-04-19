@@ -16,14 +16,16 @@
             <th></th>
             <th></th>
         </tr>
+        {% for pet in cliente.pets %}
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{pet.nome}}</td>
+            <td>{{pet.especie}}</td>
+            <td>{{pet.raca}}</td>
+            <td>{{pet.sexo}}</td>
             <td></td>
             <td></td>
         </tr>
+        {% endfor %}
     </table>
 
 {% endblock %}

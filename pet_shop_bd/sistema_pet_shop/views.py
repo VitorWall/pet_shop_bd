@@ -37,7 +37,15 @@ class Clientes (ListView):
     model = Cliente
 
 class DetailCliente (DetailView):
-    model = Cliente
+    # model = Cliente
+    def get(self, request, pk, *args, **kwargs):
+        cliente = get_object_or_404(Cliente, id=pk)
+        pets = Pet.objects.filter(cliente=cliente.id)
+        cliente.pets = pets
+        print(cliente.pets)
+        context = {'cliente': cliente}
+        return render(request,'sistema_pet_shop/cliente_detail.html', context=context)
+
 
 def novoCliente (request):
     if request.method == 'POST':
