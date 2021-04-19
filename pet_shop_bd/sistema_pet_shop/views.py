@@ -37,7 +37,15 @@ class Clientes (ListView):
     model = Cliente
 
 class DetailCliente (DetailView):
-    model = Cliente
+    # model = Cliente
+    def get(self, request, pk, *args, **kwargs):
+        cliente = get_object_or_404(Cliente, id=pk)
+        pets = Pet.objects.filter(cliente=cliente.id)
+        cliente.pets = pets
+        print(cliente.pets)
+        context = {'cliente': cliente}
+        return render(request,'sistema_pet_shop/cliente_detail.html', context=context)
+
 
 def novoCliente (request):
     if request.method == 'POST':
@@ -62,9 +70,6 @@ def deleteCliente (request, pk, template_name=''):
     cliente.delete()
     return redirect('/clientes')
 
-class Pets (ListView):
-    model = Pet
-
 class DetailPet (DetailView):
     model = Pet
 
@@ -80,3 +85,16 @@ def novoPet (request, pk):
     form.fields['cliente'].initial =  cliente.id
 
     return render(request,'novo_pet.html',{'form': form})
+
+def editPet (request, pk, template_name='sistema_pet_shop/edit_pet.html'):
+    pet = get_object_or_404(Pet, id=pk)
+    form = PetForm(request.POST or None, instance=pet)
+    if form.is_valid():
+        form.save()
+        return redirect('/detail-cliente/' + str(pet.cliente.id))
+    return render(request, template_name, {'form':form})
+
+def deletePet (request, pk, template_name=''):
+    pet = get_object_or_404(Pet, id=pk)
+    pet.delete()
+    return redirect('/detail-cliente/' + str(pet.cliente.id))
