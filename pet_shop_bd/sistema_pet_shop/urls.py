@@ -12,7 +12,9 @@ urlpatterns = [
     path('clientes', views.Clientes.as_view(), name="clientes"),
     path('detail-cliente/<int:pk>', views.DetailCliente.as_view(), name="detail-cliente"),
     path('novo-cliente', views.novoCliente, name="novo-cliente"),
-    path('editar-cliente/<int:pk>', views.editCliente, name="novo-liente"),
+    path('editar-cliente/<int:pk>', views.editCliente, name="novo-cliente"),
     path('delete-cliente/<int:pk>', views.deleteCliente, name='delete-cliente'),
     path('novo-pet/<int:pk>', views.novoPet, name="novo-pet"),
+    path('editar-pet/<int:pk>', views.editPet, name="novo-pet"),
+    path('delete-pet/<int:pk>', views.deletePet, name='delete-pet'),
 ]
