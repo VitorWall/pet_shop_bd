@@ -1,0 +1,33 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Sistema Pet Shop{% endblock %}
+
+{% block content %} 
+    <a href="/nova-unidade">
+        <button class="btn btn-primary">Cadastrar Unidade</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Unidade</th>
+            <th>Endereço</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for unidade in unidade_list %}
+        <tr>
+            <td><a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a></td>
+            <td>{{ unidade.endereco}}</td>
+            <td>
+                <a href="/editar-unidade/{{ unidade.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-unidade/{{ unidade.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
