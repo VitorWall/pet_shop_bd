@@ -118,3 +118,16 @@ def novoFuncionario (request, pk):
     form.fields['unidade'].initial =  unidade.id
 
     return render(request,'novo_funcionario.html',{'form': form})
+
+def editFuncionario (request, pk, template_name='sistema_pet_shop/edit_funcionario.html'):
+    funcionario = get_object_or_404(Funcionario, id=pk)
+    form = FuncionarioForm(request.POST or None, instance=funcionario)
+    if form.is_valid():
+        form.save()
+        return redirect('/funcionarios/' + str(funcionario.unidade.id))
+    return render(request, template_name, {'form':form})
+
+def deleteFuncionario (request, pk, template_name=''):
+    funcionario = get_object_or_404(Funcionario, id=pk)
+    funcionario.delete()
+    return redirect('/funcionarios/' + str(funcionario.unidade.id))
