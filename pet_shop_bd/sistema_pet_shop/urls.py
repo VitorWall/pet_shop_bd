@@ -17,4 +17,5 @@ urlpatterns = [
     path('novo-pet/<int:pk>', views.novoPet, name="novo-pet"),
     path('editar-pet/<int:pk>', views.editPet, name="novo-pet"),
     path('delete-pet/<int:pk>', views.deletePet, name='delete-pet'),
+    path('funcionarios/<int:pk>', views.Funcionarios.as_view(), name="funcionarios"),
 ]
