@@ -3,6 +3,27 @@
 {% block title %}Cliente {{cliente.nome}}{% endblock %}
 
 {% block content %}
+    <h3>Detalhes de {{cliente.nome}}</h3>
+    <table class="table"  style="width:30% ">
+        <tr><td>CPF: {{cliente.CPF}}</td></tr>
+        <tr><td>Telefone: {{cliente.telefone}}</td></tr>
+        <tr>
+            {% if cliente.vip == True  %}
+                <td>VIP: Sim</td>
+            {% else %}
+                <td>VIP: Não</td>
+            {% endif %}
+        </tr>
+        <td>
+            <a href="/editar-cliente/{{ cliente.id }}">
+                <button class="btn btn-primary">Editar</button>
+            </a>
+        </td>
+    </table>
+
+    <br/>
+    <br/>
+
     <h3>Pets de {{cliente.nome}}</h3>
     <a href="/novo-pet/{{ cliente.id }}">
         <button class="btn btn-primary">Cadastrar Pet</button>
