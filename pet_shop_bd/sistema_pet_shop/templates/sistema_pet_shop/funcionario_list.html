@@ -1,9 +1,10 @@
 {% extends "sistema_pet_shop/base.html"%}
 
-{% block title %}Funcionários de {{unidade.nome}} {% endblock %}
+{% block title %}Funcionários de {{funcionarios.unidade.nome}} {% endblock %}
 
 {% block content %} 
-    <a href="/novo-funcionario">
+    <h3>Funcionários de {{funcionarios.unidade.nome}}</h3>
+    <a href="/novo-funcionario/{{funcionarios.unidade.id}}">
         <button class="btn btn-primary">Cadastrar Funcionário</button>
     </a>
     <table class="table"  style="width:80% ">
@@ -13,7 +14,7 @@
             <th></th>
             <th></th>
         </tr>
-        {% for funcionario in funcionario_list %}
+        {% for funcionario in funcionarios %}
         <tr>
             <td><a href="/detail-funcionario/{{ funcionario.id }}">{{ funcionario.nome }}</a></td>
             <td>{{funcionario.cargo}}</td>

@@ -1,0 +1,76 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Pet {{pet.nome}}{% endblock %}
+
+{% block content %}
+    <h3>Detalhes de {{pet.nome}}</h3>
+    <table class="table"  style="width:30% ">
+        <tr><td>Espécie: {{pet.especie}}</td></tr>
+        <tr><td>Raça: {{pet.raca}}</td></tr>
+        <tr><td>Sexo: {{pet.sexo}}</td></tr>
+        <tr><td>Dono: {{pet.cliente}}</td></tr>
+        <td>
+            <a href="/editar-pet/{{ pet.id }}">
+                <button class="btn btn-primary">Editar</button>
+            </a>
+        </td>
+    </table>
+
+    <br/>
+    <br/>
+
+    <h3>Agendamentos</h3>
+    <a href="/novo-agendamento/{{ pet.id }}">
+        <button class="btn btn-primary">Novo Agendamento</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Sala</th>
+            <th>Funcionário</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for agendamento in pet.agendamentos %}
+        <tr>
+            <td>{{agendamento.data}}</td>
+            <td>{{agendamento.hora}}</td>
+            <td>{{agendamento.sala}}</td>
+            <td><a href="/detail-funcionario/{{ agendamento.funcionario.id }}">{{ agendamento.funcionario.nome }}</td>
+            <td>
+                <a href="/delete-agendamento/{{ agendamento.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Estadias</h3>
+    <a href="/nova-estadia/{{ pet.id }}">
+        <button class="btn btn-primary">Nova Estadia</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Acomodação</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for estadia in pet.estadias %}
+        <tr>
+            <td>{{estadia.data_inicial}}</td>
+            <td>{{estadia.data_final}}</td>
+            <td><a href="/detail-acomodação/{{ estadia.acomodacao.id }}">{{ estadia.acomodacao.numero }}</td>
+            <td>
+                <a href="/delete-estadia/{{ estadia.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

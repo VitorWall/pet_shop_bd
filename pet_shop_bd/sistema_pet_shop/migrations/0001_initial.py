@@ -67,7 +67,11 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('numero', models.IntegerField(verbose_name='número')),
                 ('equipamentos', models.CharField(max_length=100)),
+<<<<<<< HEAD
                 ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade')),
+=======
+                ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade')),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
             ],
         ),
         migrations.CreateModel(
@@ -84,12 +88,20 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='oferecimento',
             name='servico',
+<<<<<<< HEAD
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Servico'),
+=======
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.servico'),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
         ),
         migrations.AddField(
             model_name='oferecimento',
             name='unidade',
+<<<<<<< HEAD
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade'),
+=======
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade'),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
         ),
         migrations.CreateModel(
             name='Funcionario',
@@ -99,7 +111,11 @@ class Migration(migrations.Migration):
                 ('nome', models.CharField(max_length=70)),
                 ('cargo', models.CharField(max_length=70)),
                 ('salario', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='salário')),
+<<<<<<< HEAD
                 ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade')),
+=======
+                ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade')),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
             ],
         ),
         migrations.CreateModel(
@@ -109,7 +125,11 @@ class Migration(migrations.Migration):
                 ('nome', models.CharField(max_length=70)),
                 ('aplicacao', models.CharField(max_length=200, verbose_name='aplicação')),
                 ('quantidade', models.IntegerField()),
+<<<<<<< HEAD
                 ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade')),
+=======
+                ('unidade', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade')),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
             ],
         ),
         migrations.CreateModel(
@@ -118,8 +138,13 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('data_inicial', models.DateField()),
                 ('data_final', models.DateField()),
+<<<<<<< HEAD
                 ('acomodacao', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Acomodacao')),
                 ('pet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Pet')),
+=======
+                ('acomodacao', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.acomodacao')),
+                ('pet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.pet')),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
             ],
         ),
         migrations.AddField(
@@ -130,12 +155,20 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cadastro',
             name='cliente',
+<<<<<<< HEAD
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Cliente'),
+=======
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.cliente'),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
         ),
         migrations.AddField(
             model_name='cadastro',
             name='unidade',
+<<<<<<< HEAD
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade'),
+=======
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade'),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
         ),
         migrations.CreateModel(
             name='Agendamento',
@@ -143,14 +176,24 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('data', models.DateField()),
                 ('hora', models.TimeField()),
+<<<<<<< HEAD
                 ('funcionario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Funcionario')),
                 ('pet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Pet')),
                 ('sala', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Sala')),
+=======
+                ('funcionario', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.funcionario')),
+                ('pet', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.pet')),
+                ('sala', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.sala')),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
             ],
         ),
         migrations.AddField(
             model_name='acomodacao',
             name='unidade',
+<<<<<<< HEAD
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.Unidade'),
+=======
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='sistema_pet_shop.unidade'),
+>>>>>>> 8db331b66cd3134abbb693bb05e95c4e03aca762
         ),
     ]

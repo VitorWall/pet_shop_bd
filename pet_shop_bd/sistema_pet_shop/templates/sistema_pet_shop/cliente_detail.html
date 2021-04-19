@@ -39,7 +39,7 @@
         </tr>
         {% for pet in cliente.pets %}
         <tr>
-            <td>{{pet.nome}}</td>
+            <td><a href="/detail-pet/{{ pet.id }}">{{ pet.nome }}</td>
             <td>{{pet.especie}}</td>
             <td>{{pet.raca}}</td>
             <td>{{pet.sexo}}</td>
