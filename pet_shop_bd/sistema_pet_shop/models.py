@@ -57,7 +57,7 @@ class Servico(models.Model):
         return self.service_type
 
 
-class Estoque(models.Model):
+class Produto(models.Model):
     nome = models.CharField(max_length=70)#, primary_key=True)
     aplicacao = models.CharField('aplicação', max_length=200)
     quantidade = models.IntegerField()

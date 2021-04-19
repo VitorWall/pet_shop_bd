@@ -284,7 +284,13 @@ def novaSala (request):
     return render(request,'nova_sala.html',{'form': form})
 
 class Salas (ListView):
-    model = Sala
+    # model = Sala
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        salas = Sala.objects.filter(unidade=unidade.id)
+        salas.unidade = unidade
+        context = {'salas': salas}
+        return render(request,'sistema_pet_shop/sala_list.html', context=context)
 
 def editSala (request, pk, template_name='sistema_pet_shop/edit_sala.html'):
     sala = get_object_or_404(Sala, id=pk)
