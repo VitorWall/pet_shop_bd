@@ -1,7 +1,7 @@
 from django.db import models
 
 class Unidade(models.Model):
-    cep = models.IntegerField(primary_key=True)
+    cep = models.IntegerField()#, primary_key=True)
     nome = models.CharField(max_length=70)
     endereco = models.CharField(max_length=70)
 
@@ -9,7 +9,7 @@ class Unidade(models.Model):
         return self.nome
 
 class Cliente(models.Model):
-    CPF = models.CharField(max_length=11, primary_key=True)
+    CPF = models.CharField(max_length=11)#, primary_key=True)
     nome = models.CharField(max_length=70)
     telefone = models.CharField(max_length=11)
     vip = models.BooleanField()

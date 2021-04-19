@@ -1,29 +1,29 @@
 {% extends "sistema_pet_shop/base.html"%}
 
-{% block title %}Sistema Pet Shop{% endblock %}
+{% block title %}Clientes{% endblock %}
 
 {% block content %} 
-    <a href="/nova-unidade">
-        <button class="btn btn-primary">Cadastrar Unidade</button>
+    <a href="/novo-cliente">
+        <button class="btn btn-primary">Cadastrar Cliente</button>
     </a>
     <table class="table"  style="width:80% ">
         <tr>
-            <th>Unidade</th>
-            <th>Endereço</th>
+            <th>Cliente</th>
+            <th>Telefone</th>
             <th></th>
             <th></th>
         </tr>
-        {% for unidade in unidade_list %}
+        {% for cliente in cliente_list %}
         <tr>
-            <td>{{ unidade.nome }}</td>
-            <td>{{ unidade.endereco}}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.telefone}}</td>
             <td>
-                <a href="/editar-unidade/{{ unidade.id }}">
+                <a href="/editar-cliente/{{ cliente.id }}">
                     <button class="btn btn-primary">Editar</button>
                 </a>
             </td>
             <td>
-                <a href="/delete-unidade/{{ unidade.id }}">
+                <a href="/delete-cliente/{{ cliente.id }}">
                     <button class="btn btn-danger">Apagar</button>
                 </a>
             </td>
