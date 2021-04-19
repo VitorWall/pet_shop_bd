@@ -77,7 +77,6 @@ def novoPet (request, pk):
     cliente = get_object_or_404(Cliente, id=pk)
     if request.method == 'POST':
         form = PetForm(request.POST)
-        # form.fields['cliente'].initial =  cliente.id
         if form.is_valid():
             form.save()
             return redirect('/detail-cliente/' + str(cliente.id))
@@ -100,4 +99,22 @@ def deletePet (request, pk, template_name=''):
     return redirect('/detail-cliente/' + str(pet.cliente.id))
 
 class Funcionarios (ListView):
-    model = Funcionario
+    # model = Funcionario
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        funcionarios = Funcionario.objects.filter(unidade=unidade.id)
+        funcionarios.unidade = unidade
+        context = {'funcionarios': funcionarios}
+        return render(request,'sistema_pet_shop/funcionario_list.html', context=context)
+
+def novoFuncionario (request, pk):
+    unidade = get_object_or_404(Unidade, id=pk)
+    if request.method == 'POST':
+        form = FuncionarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/funcionarios/' + str(unidade.id))
+    form = FuncionarioForm()
+    form.fields['unidade'].initial =  unidade.id
+
+    return render(request,'novo_funcionario.html',{'form': form})
