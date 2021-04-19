@@ -70,8 +70,19 @@ def deleteCliente (request, pk, template_name=''):
     cliente.delete()
     return redirect('/clientes')
 
-class DetailPet (DetailView):
+class Pets (ListView):
     model = Pet
+
+class DetailPet (DetailView):
+    # model = Pet
+    def get(self, request, pk, *args, **kwargs):
+        pet = get_object_or_404(Pet, id=pk)
+        agendamentos = Agendamento.objects.filter(pet=pet.id)
+        estadias = Estadia.objects.filter(pet=pet.id)
+        pet.agendamentos = agendamentos
+        pet.estadias = estadias
+        context = {'pet': pet}
+        return render(request,'sistema_pet_shop/pet_detail.html', context=context)
 
 def novoPet (request, pk):
     cliente = get_object_or_404(Cliente, id=pk)

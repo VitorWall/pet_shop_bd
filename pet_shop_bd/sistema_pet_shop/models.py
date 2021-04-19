@@ -96,7 +96,6 @@ class Estadia(models.Model):
     acomodacao =  models.ForeignKey(Acomodacao, on_delete=models.CASCADE)
     pet =  models.ForeignKey(Pet, on_delete=models.CASCADE)
 
-
 class Oferecimento(models.Model):
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
     servico =  models.ForeignKey(Servico, on_delete=models.CASCADE)

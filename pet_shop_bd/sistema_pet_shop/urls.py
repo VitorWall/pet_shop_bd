@@ -14,6 +14,7 @@ urlpatterns = [
     path('novo-cliente', views.novoCliente, name="novo-cliente"),
     path('editar-cliente/<int:pk>', views.editCliente, name="novo-cliente"),
     path('delete-cliente/<int:pk>', views.deleteCliente, name='delete-cliente'),
+    path('detail-pet/<int:pk>', views.DetailPet.as_view(), name="detail-pet"),
     path('novo-pet/<int:pk>', views.novoPet, name="novo-pet"),
     path('editar-pet/<int:pk>', views.editPet, name="novo-pet"),
     path('delete-pet/<int:pk>', views.deletePet, name='delete-pet'),
