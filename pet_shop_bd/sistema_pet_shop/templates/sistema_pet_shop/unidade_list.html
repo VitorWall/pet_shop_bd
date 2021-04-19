@@ -15,7 +15,7 @@
         </tr>
         {% for unidade in unidade_list %}
         <tr>
-            <td>{{ unidade.nome }}</td>
+            <td><a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a></td>
             <td>{{ unidade.endereco}}</td>
             <td>
                 <a href="/editar-unidade/{{ unidade.id }}">

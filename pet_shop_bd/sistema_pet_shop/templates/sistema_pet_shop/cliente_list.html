@@ -15,7 +15,7 @@
         </tr>
         {% for cliente in cliente_list %}
         <tr>
-            <td>{{ cliente.nome }}</td>
+            <td><a href="/detail-cliente/{{ cliente.id }}">{{ cliente.nome }}</a></td>
             <td>{{ cliente.telefone}}</td>
             <td>
                 <a href="/editar-cliente/{{ cliente.id }}">

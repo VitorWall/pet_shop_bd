@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import DeleteView, ListView
+from django.views.generic import DetailView, ListView
 from .models import *
 from .forms import *
 
 # Create your views here.
 class Unidades (ListView):
+    model = Unidade
+
+class DetailUnidade (DetailView):
     model = Unidade
 
 def novaUnidade (request):
@@ -31,6 +34,9 @@ def deleteUnidade (request, pk, template_name=''):
     return redirect('sistema_pet_shop:Uunidades')
 
 class Clientes (ListView):
+    model = Cliente
+
+class DetailCliente (DetailView):
     model = Cliente
 
 def novoCliente (request):
