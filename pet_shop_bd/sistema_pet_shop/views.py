@@ -151,6 +151,9 @@ def deleteFuncionario (request, pk, template_name=''):
 
 # SERVIÇO ---------------------------------------------------------------------------
 
+class Servicos (ListView):
+    model = Servico
+
 def novoServico (request):
     if request.method == 'POST':
         form = ServicoForm(request.POST)
@@ -160,9 +163,6 @@ def novoServico (request):
     form = ServicoForm()
 
     return render(request,'novo_servico.html',{'form': form})
-
-class Servicos (ListView):
-    model = Servico
 
 def editServico (request, pk, template_name='sistema_pet_shop/edit_servico.html'):
     servico = get_object_or_404(Servico, id=pk)
@@ -179,18 +179,25 @@ def deleteServico (request, pk, template_name=''):
 
 # ACOMODAÇÃO ---------------------------------------------------------------------------
 
-def novaAcomodacao (request):
+class Acomodacoes (ListView):
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        acomodacoes = Acomodacao.objects.filter(unidade=unidade.id)
+        acomodacoes.unidade = unidade
+        context = {'acomodacoes': acomodacoes}
+        return render(request,'sistema_pet_shop/acomodacao_list.html', context=context)
+
+def novaAcomodacao (request, pk):
+    unidade = get_object_or_404(Unidade, id=pk)
     if request.method == 'POST':
         form = AcomodacaoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sistema_pet_shop:acomodacoes')
+            return redirect('/acomodacoes/'+ str(unidade.id))
     form = AcomodacaoForm()
+    form.fields['unidade'].initial =  unidade.id
 
     return render(request,'nova_acomodacao.html',{'form': form})
-
-class Acomodacoes (ListView):
-    model = Acomodacao
 
 def editAcomodacao (request, pk, template_name='sistema_pet_shop/edit_acomodacao.html'):
     acomodacao = get_object_or_404(Acomodacao, id=pk)
@@ -203,7 +210,7 @@ def editAcomodacao (request, pk, template_name='sistema_pet_shop/edit_acomodacao
 def deleteAcomodacao (request, pk, template_name=''):
     acomodacao = get_object_or_404(Acomodacao, id=pk)
     acomodacao.delete()
-    return redirect('/acomodacoes')
+    return redirect('/acomodacoes/' + str(acomodacao.unidade.id))
 
 # AGENDAMENTO ---------------------------------------------------------------------------
 
