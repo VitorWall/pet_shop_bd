@@ -3,5 +3,27 @@
 {% block title %}Cliente {{cliente.nome}}{% endblock %}
 
 {% block content %}
+    <h3>Pets de {{cliente.nome}}</h3>
+    <a href="/novo-pet/{{ cliente.id }}">
+        <button class="btn btn-primary">Cadastrar Pet</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Pet</th>
+            <th>Espécie</th>
+            <th>Raça</th>
+            <th>Sexo</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
 
 {% endblock %}

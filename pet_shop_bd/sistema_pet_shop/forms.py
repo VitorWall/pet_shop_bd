@@ -11,3 +11,8 @@ class ClienteForm(forms.ModelForm):
         model = Cliente
         fields = "__all__"
 
+class PetForm(forms.ModelForm):
+    class Meta:
+        model = Pet
+        fields = "__all__" # ['nome', 'especie', 'raca', 'sexo']
+        widgets = {'cliente': forms.HiddenInput()}

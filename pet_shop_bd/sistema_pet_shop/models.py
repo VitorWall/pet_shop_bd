@@ -28,7 +28,7 @@ class Pet(models.Model):
     especie = models.CharField(max_length=70)
     raca = models.CharField(max_length=20)
     sexo = models.CharField(max_length=20)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, default=1)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     def __str__(self):
         return self.nome
 

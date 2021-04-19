@@ -61,3 +61,22 @@ def deleteCliente (request, pk, template_name=''):
     cliente = get_object_or_404(Cliente, id=pk)
     cliente.delete()
     return redirect('/clientes')
+
+class Pets (ListView):
+    model = Pet
+
+class DetailPet (DetailView):
+    model = Pet
+
+def novoPet (request, pk):
+    cliente = get_object_or_404(Cliente, id=pk)
+    if request.method == 'POST':
+        form = PetForm(request.POST)
+        # form.fields['cliente'].initial =  cliente.id
+        if form.is_valid():
+            form.save()
+            return redirect('/detail-cliente/' + str(cliente.id))
+    form = PetForm()
+    form.fields['cliente'].initial =  cliente.id
+
+    return render(request,'novo_pet.html',{'form': form})
