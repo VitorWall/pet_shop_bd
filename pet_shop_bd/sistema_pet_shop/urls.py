@@ -19,4 +19,7 @@ urlpatterns = [
     path('editar-pet/<int:pk>', views.editPet, name="novo-pet"),
     path('delete-pet/<int:pk>', views.deletePet, name='delete-pet'),
     path('funcionarios/<int:pk>', views.Funcionarios.as_view(), name="funcionarios"),
+    path('novo-funcionario/<int:pk>', views.novoFuncionario, name="novo-funcionario"),
+    path('editar-funcionario/<int:pk>', views.editFuncionario, name="novo-funcionario"),
+    path('delete-funcionario/<int:pk>', views.deleteFuncionario, name='delete-funcionario'),
 ]

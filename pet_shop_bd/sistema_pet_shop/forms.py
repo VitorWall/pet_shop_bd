@@ -16,3 +16,10 @@ class PetForm(forms.ModelForm):
         model = Pet
         fields = "__all__" # ['nome', 'especie', 'raca', 'sexo']
         widgets = {'cliente': forms.HiddenInput()}
+
+class FuncionarioForm (forms.ModelForm):
+    class Meta:
+        model = Funcionario
+        fields = "__all__"
+        widgets = {'unidade': forms.HiddenInput()}
+
