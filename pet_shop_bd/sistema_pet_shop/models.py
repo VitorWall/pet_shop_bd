@@ -34,7 +34,7 @@ class Pet(models.Model):
 
 
 class Funcionario(models.Model):
-    CPF = models.IntegerField(11, primary_key=True)
+    CPF = models.IntegerField(11)#, primary_key=True)
     nome = models.CharField(max_length=70)
     cargo = models.CharField(max_length=70)
     salario = models.DecimalField(decimal_places=2, max_digits=10)
@@ -58,7 +58,7 @@ class Servico(models.Model):
 
 
 class Estoque(models.Model):
-    nome = models.CharField(max_length=70, primary_key=True)
+    nome = models.CharField(max_length=70)#, primary_key=True)
     aplicacao = models.CharField(max_length=200)
     quantidade = models.IntegerField(4)
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE, default=1)
@@ -66,7 +66,7 @@ class Estoque(models.Model):
         return self.nome
 
 class Acomodacao(models.Model):
-    numero = models.IntegerField(1, primary_key=True)
+    numero = models.IntegerField(1)#, primary_key=True)
     tamanho = models.IntegerField(3)
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE, default=1)
 
@@ -74,7 +74,7 @@ class Acomodacao(models.Model):
         return str(self.numero)
 
 class Sala(models.Model):
-    numero = models.IntegerField(1, primary_key=True)
+    numero = models.IntegerField(1)#, primary_key=True)
     equipamentos = models.CharField(max_length=100)
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE, default=1)
 
