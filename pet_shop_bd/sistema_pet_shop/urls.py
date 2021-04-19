@@ -30,5 +30,10 @@ urlpatterns = [
     path('acomodacoes', views.Acomodacoes.as_view(), name="acomodacoes"),
     path('editar-acomodacao/<int:pk>', views.editAcomodacao, name="nova-acomodacao"),
     path('delete-acomodacao/<int:pk>', views.deleteAcomodacao, name='delete-acomodacao'),
-    
+    path('novo-agendamento/<int:pk>', views.novoAgendamento, name="novo-agendamento"),
+    path('editar-agendamento/<int:pk>', views.editAgendamento, name="novo-agendamento"),
+    path('delete-agendamento/<int:pk>', views.deleteAgendamento, name='delete-agendamento'),
+    path('nova-estadia/<int:pk>', views.novaEstadia, name="nova-estadia"),
+    path('editar-estadia/<int:pk>', views.editEstadia, name="nova-estadia"),
+    path('delete-estadia/<int:pk>', views.deleteEstadia, name='delete-estadia'),    
 ]   

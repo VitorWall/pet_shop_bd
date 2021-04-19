@@ -32,3 +32,15 @@ class FuncionarioForm (forms.ModelForm):
         model = Funcionario
         fields = "__all__"
         widgets = {'unidade': forms.HiddenInput()}
+
+class AgendamentoForm(forms.ModelForm):
+    class Meta:
+        model = Agendamento
+        fields = "__all__"
+        widgets = {'pet': forms.HiddenInput()}
+
+class EstadiaForm(forms.ModelForm):
+    class Meta:
+        model = Estadia
+        fields = "__all__"
+        widgets = {'pet': forms.HiddenInput()}
