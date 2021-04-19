@@ -98,3 +98,6 @@ def deletePet (request, pk, template_name=''):
     pet = get_object_or_404(Pet, id=pk)
     pet.delete()
     return redirect('/detail-cliente/' + str(pet.cliente.id))
+
+class Funcionarios (ListView):
+    model = Funcionario

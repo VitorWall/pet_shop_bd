@@ -1,0 +1,33 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Funcionários de {{unidade.nome}} {% endblock %}
+
+{% block content %} 
+    <a href="/novo-funcionario">
+        <button class="btn btn-primary">Cadastrar Funcionário</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for funcionario in funcionario_list %}
+        <tr>
+            <td><a href="/detail-funcionario/{{ funcionario.id }}">{{ funcionario.nome }}</a></td>
+            <td>{{funcionario.cargo}}</td>
+            <td>
+                <a href="/editar-funcionario/{{ funcionario.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-funcionario/{{ funcionario.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
