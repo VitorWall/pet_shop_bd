@@ -30,5 +30,9 @@ urlpatterns = [
     path('acomodacoes', views.Acomodacoes.as_view(), name="acomodacoes"),
     path('editar-acomodacao/<int:pk>', views.editAcomodacao, name="nova-acomodacao"),
     path('delete-acomodacao/<int:pk>', views.deleteAcomodacao, name='delete-acomodacao'),
+    path('nova-sala', views.novaSala, name="nova-sala"),
+    path('salas', views.Salas.as_view(), name="salas"),
+    path('editar-sala/<int:pk>', views.editSala, name="nova-sala"),
+    path('delete-sala/<int:pk>', views.deleteSala, name='delete-sala'),
     
 ]   

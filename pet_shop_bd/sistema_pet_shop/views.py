@@ -194,3 +194,30 @@ def deleteAcomodacao (request, pk, template_name=''):
     acomodacao = get_object_or_404(Acomodacao, id=pk)
     acomodacao.delete()
     return redirect('/acomodacoes')
+
+
+def novaSala (request):
+    if request.method == 'POST':
+        form = SalaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sistema_pet_shop:salas')
+    form = SalaForm()
+
+    return render(request,'nova_sala.html',{'form': form})
+
+class Salas (ListView):
+    model = Sala
+
+def editSala (request, pk, template_name='sistema_pet_shop/edit_sala.html'):
+    sala = get_object_or_404(Sala, id=pk)
+    form = SalaForm(request.POST or None, instance=sala)
+    if form.is_valid():
+        form.save()
+        return redirect('sistema_pet_shop:salas')
+    return render(request, template_name, {'form':form})
+
+def deleteSala (request, pk, template_name=''):
+    sala = get_object_or_404(Sala, id=pk)
+    sala.delete()
+    return redirect('/salas')

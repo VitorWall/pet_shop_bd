@@ -32,3 +32,8 @@ class FuncionarioForm (forms.ModelForm):
         model = Funcionario
         fields = "__all__"
         widgets = {'unidade': forms.HiddenInput()}
+
+class SalaForm(forms.ModelForm):
+    class Meta:
+        model = Sala
+        fields = "__all__"

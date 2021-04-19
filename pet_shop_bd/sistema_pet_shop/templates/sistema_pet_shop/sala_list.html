@@ -1,0 +1,34 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Sistema Pet Shop{% endblock %}
+
+{% block content %} 
+    <a href="/nova-sala">
+        <button class="btn btn-primary">Adicionar Sala</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Número</th>
+            <th>Equipamentos</th>
+            <th>Unidade</th>
+        </tr>
+        {% for sala in sala_list %}
+        <tr>
+            <td>{{ sala.numero }}</td>
+            <td>{{ sala.equipamentos }}</td>
+            <td><a href="/detail-unidade/{{ sala.unidade.id }}">{{ sala.unidade.nome }}</a></td>
+
+            <td>
+                <a href="/editar-sala/{{ sala.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-sala/{{ sala.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
