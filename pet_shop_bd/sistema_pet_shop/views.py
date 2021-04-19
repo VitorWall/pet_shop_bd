@@ -31,7 +31,7 @@ def editUnidade (request, pk, template_name='sistema_pet_shop/edit_unidade.html'
 def deleteUnidade (request, pk, template_name=''):
     unidade = get_object_or_404(Unidade, id=pk)
     unidade.delete()
-    return redirect('sistema_pet_shop:Uunidades')
+    return redirect('sistema_pet_shop:unidades')
 
 class Clientes (ListView):
     model = Cliente
