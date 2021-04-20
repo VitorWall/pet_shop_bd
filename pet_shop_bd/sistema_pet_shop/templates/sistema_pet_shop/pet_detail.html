@@ -8,7 +8,7 @@
         <tr><td>Espécie: {{pet.especie}}</td></tr>
         <tr><td>Raça: {{pet.raca}}</td></tr>
         <tr><td>Sexo: {{pet.sexo}}</td></tr>
-        <tr><td>Dono: {{pet.cliente}}</td></tr>
+        <tr><td>Dono: <a href="/detail-cliente/{{ pet.cliente.id }}">{{pet.cliente}}</td></tr>
         <td>
             <a href="/editar-pet/{{ pet.id }}">
                 <button class="btn btn-primary">Editar</button>

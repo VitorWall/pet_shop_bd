@@ -38,6 +38,8 @@ class SalaForm(forms.ModelForm):
     class Meta:
         model = Sala
         fields = "__all__"
+        widgets = {'unidade': forms.HiddenInput()}
+
 class AgendamentoForm(forms.ModelForm):
     class Meta:
         model = Agendamento

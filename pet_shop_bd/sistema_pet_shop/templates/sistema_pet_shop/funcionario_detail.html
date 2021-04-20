@@ -1,0 +1,49 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Funcionário {{funcionario.nome}}{% endblock %}
+
+{% block content %}
+    <h3>Detalhes de {{funcionario.nome}}</h3>
+    <table class="table"  style="width:30% ">
+        <tr><td>CPF: {{funcionario.CPF}}</td></tr>
+        <tr><td>Cargo: {{funcionario.cargo}}</td></tr>
+        <tr><td>Salário: {{funcionario.salario}}</td></tr>
+        <tr><td>Unidade onde trabalha: {{funcionario.unidade}}</td></tr>
+        <td>
+            <a href="/editar-pet/{{ pet.id }}">
+                <button class="btn btn-primary">Editar</button>
+            </a>
+        </td>
+    </table>
+
+    <br/>
+    <br/>
+
+    <h3>Agendamentos</h3>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Sala</th>
+            <th>Cliente</th>
+            <th>Pet</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for agendamento in funcionario.agendamentos %}
+        <tr>
+            <td>{{agendamento.data}}</td>
+            <td>{{agendamento.hora}}</td>
+            <td>{{agendamento.sala}}</td>
+            <td><a href="/detail-cliente/{{ agendamento.pet.cliente.id }}">{{ agendamento.pet.cliente.nome }}</td>
+            <td><a href="/detail-pet/{{ agendamento.pet.id }}">{{ agendamento.pet.nome }}</td>
+            <td>
+                <a href="/delete-agendamento/{{ agendamento.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
