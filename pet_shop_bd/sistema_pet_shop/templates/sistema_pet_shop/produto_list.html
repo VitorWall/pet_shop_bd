@@ -1,0 +1,37 @@
+{% extends "sistema_pet_shop/base.html"%}
+
+{% block title %}Sistema Pet Shop{% endblock %}
+
+{% block content %} 
+    <h3>Estoque de {{estoque.unidade.nome}}</h3>
+    <a href="/novo-produto">
+        <button class="btn btn-primary">Adicionar Produto</button>
+    </a>
+    <table class="table"  style="width:80% ">
+        <tr>
+            <th>Nome</th>
+            <th>Aplicação</th>
+            <th>Quantidade</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for produto in estoque %}
+        <tr>
+            <td>{{ produto.nome }}</td>
+            <td>{{ produto.aplicacao }}</td>
+            <td>{{ produto.quantidade}}</td>
+
+            <td>
+                <a href="/editar-produto/{{ produto.id }}">
+                    <button class="btn btn-primary">Editar</button>
+                </a>
+            </td>
+            <td>
+                <a href="/delete-produto/{{ produto.id }}">
+                    <button class="btn btn-danger">Apagar</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -41,5 +41,6 @@ urlpatterns = [
     path('nova-estadia/<int:pk>', views.novaEstadia, name="nova-estadia"),
     path('editar-estadia/<int:pk>', views.editEstadia, name="nova-estadia"),
     path('delete-estadia/<int:pk>', views.deleteEstadia, name='delete-estadia'),  
+    path('estoque/<int:pk>', views.Estoque.as_view(), name="estoque"),
     
 ]   

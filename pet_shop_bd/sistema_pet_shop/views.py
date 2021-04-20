@@ -304,3 +304,12 @@ def deleteSala (request, pk, template_name=''):
     sala = get_object_or_404(Sala, id=pk)
     sala.delete()
     return redirect('/salas')
+
+# ESTOQUE---------------------
+class Estoque (ListView):
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        estoque = Produto.objects.filter(unidade=unidade.id)
+        estoque.unidade = unidade
+        context = {'estoque': estoque}
+        return render(request,'sistema_pet_shop/produto_list.html', context=context)
