@@ -51,3 +51,9 @@ class EstadiaForm(forms.ModelForm):
         model = Estadia
         fields = "__all__"
         widgets = {'pet': forms.HiddenInput()}
+
+class ProdutoForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = "__all__"
+        widgets = {'unidade': forms.HiddenInput()}

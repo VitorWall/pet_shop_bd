@@ -324,3 +324,15 @@ class Estoque (ListView):
         estoque.unidade = unidade
         context = {'estoque': estoque}
         return render(request,'sistema_pet_shop/produto_list.html', context=context)
+
+def novoProduto (request, pk):
+    unidade = get_object_or_404(Unidade, id=pk)
+    if request.method == 'POST':
+        form = ProdutoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/estoque/' + str(unidade.id))
+    form = ProdutoForm()
+    form.fields['unidade'].initial =  unidade.id
+
+    return render(request,'novo_produto.html',{'form': form})

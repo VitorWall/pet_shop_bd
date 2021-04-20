@@ -4,7 +4,7 @@
 
 {% block content %} 
     <h3>Estoque de {{estoque.unidade.nome}}</h3>
-    <a href="/novo-produto">
+    <a href="/novo-produto/{{estoque.unidade.id}}">
         <button class="btn btn-primary">Adicionar Produto</button>
     </a>
     <table class="table"  style="width:80% ">
