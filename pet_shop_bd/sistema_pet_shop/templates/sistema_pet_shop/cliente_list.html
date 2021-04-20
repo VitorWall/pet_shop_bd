@@ -10,13 +10,18 @@
         <tr>
             <th>Cliente</th>
             <th>Telefone</th>
-            <th></th>
+            <th>Unidades</th>
             <th></th>
         </tr>
         {% for cliente in cliente_list %}
         <tr>
             <td><a href="/detail-cliente/{{ cliente.id }}">{{ cliente.nome }}</a></td>
             <td>{{ cliente.telefone}}</td>
+            <td>
+                {% for unidade in cliente.unidades.all %}
+                    <a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a><br>
+                {% endfor %}
+            </td>
             <td>
                 <a href="/editar-cliente/{{ cliente.id }}">
                     <button class="btn btn-primary">Editar</button>

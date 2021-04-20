@@ -14,6 +14,13 @@
                 <td>VIP: Não</td>
             {% endif %}
         </tr>
+        <tr>
+            <td><span>Unidades com cadastro:</span><br/>
+                {% for unidade in cliente.unidades.all %}
+                    <a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a><br>
+                {% endfor %}
+            </td>
+        </tr>
         <td>
             <a href="/editar-cliente/{{ cliente.id }}">
                 <button class="btn btn-primary">Editar</button>
