@@ -3,7 +3,7 @@
 {% block title %}Funcionários de {{funcionarios.unidade.nome}} {% endblock %}
 
 {% block content %} 
-    <h3>Funcionários de {{funcionarios.unidade.nome}}</h3>
+    <h3>Funcionários de <a href="/detail-unidade/{{ funcionarios.unidade.id }}">{{funcionarios.unidade.nome}}</a></h3>
     <a href="/novo-funcionario/{{funcionarios.unidade.id}}">
         <button class="btn btn-primary">Cadastrar Funcionário</button>
     </a>

@@ -3,7 +3,7 @@
 {% block title %}Sistema Pet Shop{% endblock %}
 
 {% block content %} 
-    <h3>Estoque de {{estoque.unidade.nome}}</h3>
+    <h3>Estoque de <a href="/detail-unidade/{{ estoque.unidade.id }}">{{estoque.unidade.nome}}</a></h3>
     <a href="/novo-produto/{{estoque.unidade.id}}">
         <button class="btn btn-primary">Adicionar Produto</button>
     </a>

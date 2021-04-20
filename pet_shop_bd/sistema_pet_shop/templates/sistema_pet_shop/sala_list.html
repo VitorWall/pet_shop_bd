@@ -3,7 +3,7 @@
 {% block title %}Sistema Pet Shop{% endblock %}
 
 {% block content %} 
-    <h3>Salas de {{salas.unidade.nome}}</h3>
+    <h3>Salas de <a href="/detail-unidade/{{ salas.unidade.id }}">{{salas.unidade.nome}}</a></h3>
     <a href="/nova-sala/{{ salas.unidade.id }}">
         <button class="btn btn-primary">Adicionar Sala</button>
     </a>

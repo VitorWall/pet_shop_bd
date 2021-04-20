@@ -213,7 +213,7 @@ def editAcomodacao (request, pk, template_name='sistema_pet_shop/edit_acomodacao
     form = AcomodacaoForm(request.POST or None, instance=acomodacao)
     if form.is_valid():
         form.save()
-        return redirect('sistema_pet_shop:acomodacoes')
+        return redirect('/acomodacoes/' + str(acomodacao.unidade.id))
     return render(request, template_name, {'form':form})
 
 def deleteAcomodacao (request, pk, template_name=''):

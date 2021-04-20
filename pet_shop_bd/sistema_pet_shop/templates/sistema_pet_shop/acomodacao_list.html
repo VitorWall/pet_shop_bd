@@ -3,7 +3,7 @@
 {% block title %}Sistema Pet Shop{% endblock %}
 
 {% block content %} 
-    <h3>Acomodações de {{acomodacoes.unidade.nome}}</h3>
+    <h3>Acomodações de <a href="/detail-unidade/{{ acomodacoes.unidade.id }}">{{acomodacoes.unidade.nome}}</a></h3>
     <a href="/nova-acomodacao/{{ acomodacoes.unidade.id }}">
         <button class="btn btn-primary">Adicionar Acomodação</button>
     </a>
@@ -12,6 +12,8 @@
             <th>Número</th>
             <th>Tamanho</th>
             <th>Unidade</th>
+            <th></th>
+            <th></th>
         </tr>
         {% for acomodacao in acomodacoes %}
         <tr>
