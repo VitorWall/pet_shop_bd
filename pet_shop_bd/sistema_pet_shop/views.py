@@ -308,13 +308,13 @@ def editSala (request, pk, template_name='sistema_pet_shop/edit_sala.html'):
     form = SalaForm(request.POST or None, instance=sala)
     if form.is_valid():
         form.save()
-        return redirect('sistema_pet_shop:salas')
+        return redirect('/salas/' + str(sala.unidade.id))
     return render(request, template_name, {'form':form})
 
 def deleteSala (request, pk, template_name=''):
     sala = get_object_or_404(Sala, id=pk)
     sala.delete()
-    return redirect('/salas')
+    return redirect('/salas/' + str(sala.unidade.id))
 
 # ESTOQUE---------------------
 class Estoque (ListView):
