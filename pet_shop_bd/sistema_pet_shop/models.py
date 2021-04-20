@@ -41,12 +41,13 @@ class Funcionario(models.Model):
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.nome
+        return self.nome + " - " + self.cargo 
 
 class Servico(models.Model):
     tipo = models.CharField(max_length=70)
     descricao = models.CharField('descrição', max_length=400)
     duracao_media = models.DurationField('duração média')
+    preco = models.DecimalField('preço', max_digits=6, decimal_places=2)
     unidades = models.ManyToManyField(
         Unidade,
         through='Oferecimento',
@@ -54,8 +55,7 @@ class Servico(models.Model):
     )
 
     def __str__(self):
-        return self.service_type
-
+        return self.tipo
 
 class Produto(models.Model):
     nome = models.CharField(max_length=70)#, primary_key=True)
@@ -67,7 +67,7 @@ class Produto(models.Model):
 
 class Acomodacao(models.Model):
     numero = models.IntegerField('número')#, primary_key=True)
-    tamanho = models.IntegerField()
+    tamanho = models.CharField(max_length=10)
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -88,6 +88,7 @@ class Agendamento(models.Model):
     hora = models.TimeField()
     sala = models.ForeignKey(Sala, on_delete=models.CASCADE)
     funcionario = models.ForeignKey(Funcionario, on_delete=models.CASCADE)
+    servico = models.ForeignKey(Servico, on_delete=models.CASCADE)
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
 
 class Estadia(models.Model):
@@ -96,10 +97,10 @@ class Estadia(models.Model):
     acomodacao =  models.ForeignKey(Acomodacao, on_delete=models.CASCADE)
     pet =  models.ForeignKey(Pet, on_delete=models.CASCADE)
 
-class Oferecimento(models.Model):
-    unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
-    servico =  models.ForeignKey(Servico, on_delete=models.CASCADE)
-
 class Cadastro(models.Model):
     unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
     cliente =  models.ForeignKey(Cliente, on_delete=models.CASCADE)
+
+class Oferecimento(models.Model):
+    unidade =  models.ForeignKey(Unidade, on_delete=models.CASCADE)
+    servico =  models.ForeignKey(Servico, on_delete=models.CASCADE)

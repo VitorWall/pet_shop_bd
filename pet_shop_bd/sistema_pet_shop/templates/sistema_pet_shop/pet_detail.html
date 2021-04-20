@@ -23,14 +23,15 @@
     <a href="/novo-agendamento/{{ pet.id }}">
         <button class="btn btn-primary">Novo Agendamento</button>
     </a>
-    <table class="table"  style="width:80% ">
+    <table class="table"  style="width:90% ">
         <tr>
             <th>Data</th>
             <th>Hora</th>
             <th>Sala</th>
             <th>Funcionário</th>
-            <th></th>
-            <th></th>
+            <th>Serviço</th>
+            <th>Duração esperada</th>
+            <th>Preço</th>
         </tr>
         {% for agendamento in pet.agendamentos %}
         <tr>
@@ -38,6 +39,9 @@
             <td>{{agendamento.hora}}</td>
             <td>{{agendamento.sala}}</td>
             <td><a href="/detail-funcionario/{{ agendamento.funcionario.id }}">{{ agendamento.funcionario.nome }}</td>
+            <td>{{agendamento.servico}}</td>
+            <td>{{agendamento.servico.duracao_media}}</td>
+            <td>R$ {{agendamento.servico.preco}}</td>
             <td>
                 <a href="/editar-agendamento/{{ agendamento.id }}">
                     <button class="btn btn-primary">Editar</button>
@@ -56,7 +60,7 @@
     <a href="/nova-estadia/{{ pet.id }}">
         <button class="btn btn-primary">Nova Estadia</button>
     </a>
-    <table class="table"  style="width:80% ">
+    <table class="table"  style="width:90% ">
         <tr>
             <th>Data Inicial</th>
             <th>Data Final</th>
@@ -68,7 +72,7 @@
         <tr>
             <td>{{estadia.data_inicial}}</td>
             <td>{{estadia.data_final}}</td>
-            <td><a href="/detail-acomodação/{{ estadia.acomodacao.id }}">{{ estadia.acomodacao.numero }}</td>
+            <td>{{estadia.acomodacao.numero}}</td>
             <td>
                 <a href="/editar-estadia/{{ estadia.id }}">
                     <button class="btn btn-primary">Editar</button>

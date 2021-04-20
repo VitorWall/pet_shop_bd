@@ -10,7 +10,7 @@
         <tr><td>Salário: {{funcionario.salario}}</td></tr>
         <tr><td>Unidade onde trabalha: {{funcionario.unidade}}</td></tr>
         <td>
-            <a href="/editar-pet/{{ pet.id }}">
+            <a href="/editar-funcionario/{{ funcionario.id }}">
                 <button class="btn btn-primary">Editar</button>
             </a>
         </td>
@@ -37,11 +37,6 @@
             <td>{{agendamento.sala}}</td>
             <td><a href="/detail-cliente/{{ agendamento.pet.cliente.id }}">{{ agendamento.pet.cliente.nome }}</td>
             <td><a href="/detail-pet/{{ agendamento.pet.id }}">{{ agendamento.pet.nome }}</td>
-            <td>
-                <a href="/delete-agendamento/{{ agendamento.id }}">
-                    <button class="btn btn-danger">Apagar</button>
-                </a>
-            </td>
         </tr>
         {% endfor %}
     </table>
