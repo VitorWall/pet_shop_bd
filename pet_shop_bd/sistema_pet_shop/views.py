@@ -336,3 +336,16 @@ def novoProduto (request, pk):
     form.fields['unidade'].initial =  unidade.id
 
     return render(request,'novo_produto.html',{'form': form})
+
+def editProduto (request, pk, template_name='sistema_pet_shop/edit_produto.html'):
+    produto = get_object_or_404(Produto, id=pk)
+    form = ProdutoForm(request.POST or None, instance=produto)
+    if form.is_valid():
+        form.save()
+        return redirect('/estoque/'  + str(produto.unidade.id))
+    return render(request, template_name, {'form':form})
+
+def deleteProduto (request, pk, template_name=''):
+    produto = get_object_or_404(Produto, id=pk)
+    produto.delete()
+    return redirect('/estoque/' + str(produto.unidade.id))

@@ -34,7 +34,7 @@ urlpatterns = [
     path('delete-acomodacao/<int:pk>', views.deleteAcomodacao, name='delete-acomodacao'),
     path('nova-sala/<int:pk>', views.novaSala, name="nova-sala"),
     path('salas/<int:pk>', views.Salas.as_view(), name="salas"),
-    path('editar-sala/<int:pk>', views.editSala, name="nova-sala"),
+    path('editar-sala/<int:pk>', views.editSala, name="editar-sala"),
     path('delete-sala/<int:pk>', views.deleteSala, name='delete-sala'),
     path('novo-agendamento/<int:pk>', views.novoAgendamento, name="novo-agendamento"),
     path('editar-agendamento/<int:pk>', views.editAgendamento, name="novo-agendamento"),
@@ -44,5 +44,7 @@ urlpatterns = [
     path('delete-estadia/<int:pk>', views.deleteEstadia, name='delete-estadia'),  
     path('estoque/<int:pk>', views.Estoque.as_view(), name="estoque"),
     path('novo-produto/<int:pk>', views.novoProduto, name="novo-produto"),
+    path('editar-produto/<int:pk>', views.editProduto, name="editar-produto"),
+    path('delete-produto/<int:pk>', views.deleteProduto, name='delete-produto'),
     
 ]   
