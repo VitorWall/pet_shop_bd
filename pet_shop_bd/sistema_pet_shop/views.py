@@ -269,11 +269,11 @@ def novaEstadia (request, pk):
     return render(request,'nova_estadia.html',{'form': form})
 
 def editEstadia (request, pk, template_name='sistema_pet_shop/edit_estadia.html'):
-    agendamento = get_object_or_404(Agendamento, id=pk)
-    form = AgendamentoForm(request.POST or None, instance=agendamento)
+    estadia = get_object_or_404(Estadia, id=pk)
+    form = EstadiaForm(request.POST or None, instance=estadia)
     if form.is_valid():
         form.save()
-        return redirect('/detail-pet/' + str(agendamento.pet.id))
+        return redirect('/detail-pet/' + str(estadia.pet.id))
     return render(request, template_name, {'form':form})
 
 def deleteEstadia (request, pk, template_name=''):
