@@ -12,6 +12,7 @@
             <th>Tipo</th>
             <th>Descrição</th>
             <th>Duração média</th>
+            <th>Preço</th>
             <th>Unidades</th>
         </tr>
         {% for servico in servico_list %}
@@ -19,6 +20,7 @@
             <td>{{ servico.tipo }}</td>
             <td>{{ servico.descricao }}</td>
             <td>{{ servico.duracao_media }}</td>
+            <td>R$ {{ servico.preco }}</td>
             <td>
                 {% for unidade in servico.unidades.all %}
                     <a href="/detail-unidade/{{ unidade.id }}">{{ unidade.nome }}</a><br>
