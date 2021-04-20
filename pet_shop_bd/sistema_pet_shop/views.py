@@ -116,6 +116,15 @@ def deletePet (request, pk, template_name=''):
 
 # FUNCIONÁRIO ---------------------------------------------------------------------------
 
+class DetailFuncionario (DetailView):
+    # model = Pet
+    def get(self, request, pk, *args, **kwargs):
+        funcionario = get_object_or_404(Funcionario, id=pk)
+        agendamentos = Agendamento.objects.filter(funcionario=funcionario.id)
+        funcionario.agendamentos = agendamentos
+        context = {'funcionario': funcionario}
+        return render(request,'sistema_pet_shop/funcionario_detail.html', context=context)
+
 class Funcionarios (ListView):
     def get(self, request, pk, *args, **kwargs):
         unidade = get_object_or_404(Unidade, id=pk)
@@ -272,19 +281,27 @@ def deleteEstadia (request, pk, template_name=''):
     estadia.delete()
     return redirect('/detail-pet/' + str(estadia.pet.id))
 
-# SALA ---------------------------
-def novaSala (request):
+# SALA ---------------------------------------------------------------------------
+
+class Salas (ListView):
+    def get(self, request, pk, *args, **kwargs):
+        unidade = get_object_or_404(Unidade, id=pk)
+        salas = Sala.objects.filter(unidade=unidade.id)
+        salas.unidade = unidade
+        context = {'salas': salas}
+        return render(request,'sistema_pet_shop/sala_list.html', context=context)
+
+def novaSala (request, pk):
+    unidade = get_object_or_404(Unidade, id=pk)
     if request.method == 'POST':
         form = SalaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('sistema_pet_shop:salas')
+            return redirect('/salas/' + str(unidade.id))
     form = SalaForm()
+    form.fields['unidade'].initial =  unidade.id
 
     return render(request,'nova_sala.html',{'form': form})
-
-class Salas (ListView):
-    model = Sala
 
 def editSala (request, pk, template_name='sistema_pet_shop/edit_sala.html'):
     sala = get_object_or_404(Sala, id=pk)

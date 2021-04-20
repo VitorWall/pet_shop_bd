@@ -3,7 +3,8 @@
 {% block title %}Sistema Pet Shop{% endblock %}
 
 {% block content %} 
-    <a href="/nova-sala">
+    <h3>Salas de {{salas.unidade.nome}}</h3>
+    <a href="/nova-sala/{{ salas.unidade.id }}">
         <button class="btn btn-primary">Adicionar Sala</button>
     </a>
     <table class="table"  style="width:80% ">
@@ -12,7 +13,7 @@
             <th>Equipamentos</th>
             <th>Unidade</th>
         </tr>
-        {% for sala in sala_list %}
+        {% for sala in salas %}
         <tr>
             <td>{{ sala.numero }}</td>
             <td>{{ sala.equipamentos }}</td>
